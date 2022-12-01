@@ -46,6 +46,7 @@ describe('HodlChallenge', async function () {
     await vault.connect(player).hold(amotToDeposit)
 
     // TODO: Your solution below
+    await vault.sweep(await snx.target())
 
     // check
     expect(await vault.holdMethodIsCalled()).to.be.true

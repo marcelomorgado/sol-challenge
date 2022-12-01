@@ -15,6 +15,11 @@ describe('WeirdVaultChallenge', async function () {
   })
 
   it('Attack', async function () {
+    const Exploit = await ethers.getContractFactory(
+      'WeirdVaultChallengeExploit'
+    )
+    await Exploit.deploy(challenge.address, { value: 1 })
+    await challenge.complete()
     expect(await challenge.isSolved()).to.be.true
   })
 })

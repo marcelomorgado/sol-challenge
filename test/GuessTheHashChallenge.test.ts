@@ -10,12 +10,14 @@ describe('GuessTheNumberChallenge2', async function () {
   beforeEach(async function () {
     ;[player] = await ethers.getSigners()
 
-    const Challenge = await ethers.getContractFactory('GuessTheNumberChallenge2')
+    const Challenge = await ethers.getContractFactory(
+      'GuessTheNumberChallenge2'
+    )
     challenge = (await Challenge.deploy()) as GuessTheNumberChallenge2
   })
 
   it('Attack', async function () {
-    const a = 0 // input a number
+    const a = 33 // input a number
     await challenge.guess(a)
     expect(await challenge.isSolved()).to.be.true
   })

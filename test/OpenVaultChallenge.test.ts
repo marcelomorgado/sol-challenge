@@ -18,6 +18,9 @@ describe('OpenVaultChallenge', async function () {
   })
 
   it('Attack', async function () {
+    await (
+      await ethers.getContractFactory('OpenVaultChallengeExploit')
+    ).deploy(challenge.address)
     expect(await challenge.isSolved()).to.be.true
   })
 })
